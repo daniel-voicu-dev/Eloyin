@@ -1,0 +1,20 @@
+@use "./../variables"
+@use "./../mixins"
+@use "sass:math"
+@use "sass:map"
+
+\:root 
+  --font-family-headings: "Open Sans",sans-serif
+  --font-stack-main: 400 1.6rem/1.4 "Roboto Condensed", sans-serif
+p
+  margin: 0 0 0.5rem
+@for $i from -1 through 5
+  .#{h}#{5 - $i}, #{h}#{5-$i}
+    font-family: var(--font-family-headings, var(--font-stack-main))
+    margin: 0
+    font-size: clamp(#{(map.get(variables.$mobileTypoScale, "base") * math.pow(map.get(variables.$mobileTypoScale, "ratio"), $i))}#{"rem"} , #{map.get(variables.$typoScale, "base") * math.pow(map.get(variables.$typoScale, "ratio"),$i)}#{"rem"},  #{(map.get(variables.$typoScale, "base") * math.pow(map.get(variables.$typoScale, "ratio"),$i))*1000/511}#{"vw"})
+    // font-size: clamp(#{(map.get(variables.$mobileTypoScale, "base") * math.pow(map.get(variables.$mobileTypoScale, "ratio"), $i))}#{"rem"} , #{map.get(variables.$typoScale, "base") * math.pow(map.get(variables.$typoScale, "ratio"),$i)}#{"rem"},  #{(map.get(variables.$mobileTypoScale, "base") * math.pow(map.get(variables.$mobileTypoScale, "ratio"),$i))*1000/511}#{"vw"})
+    // +mixins.breakpoint(xs)
+    //   font-size: clamp(#{(map.get(variables.$mobileTypoScale, "base") * math.pow(map.get(variables.$mobileTypoScale, "ratio"), $i))}#{"rem"} , #{map.get(variables.$typoScale, "base") * math.pow(map.get(variables.$typoScale, "ratio"),$i)}#{"rem"},  #{(map.get(variables.$typoScale, "base") * math.pow(map.get(variables.$typoScale, "ratio"),$i))*1000/511}#{"vw"})
+
+  

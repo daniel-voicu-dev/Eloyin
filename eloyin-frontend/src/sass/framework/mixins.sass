@@ -1,0 +1,6 @@
+@use "./variables.sass"
+@use "sass:map"
+
+=breakpoint($breakpoint)
+  @media (min-width: map.get(variables.$breakpoints,$breakpoint))
+    @content

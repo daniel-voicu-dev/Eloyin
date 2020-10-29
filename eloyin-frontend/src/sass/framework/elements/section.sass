@@ -1,0 +1,46 @@
+@use "./../mixins"
+.section 
+  &__container
+    display: grid    
+    grid-template-columns: auto var(--container, 1fr) auto    
+    height: var(--height, auto)
+    width: 100%
+    &.height-lg
+      --height: unset
+      +mixins.breakpoint(md)
+        --height: 60rem
+    &.height-xl
+      --height: 80rem
+    &.height-md
+      --height: 40rem
+    &.height-sm
+      --height: 20rem
+    &.height-auto
+      --height: auto
+    &.height-screen
+      --height: 100vh
+  &__backdrop  
+    grid-area: 1/1/1/-1
+    z-index: -1
+    max-height: var(--height)
+    overflow: hidden
+    .opacity-bg
+      position: absolute
+      top: 0
+      bottom: 0
+      left: 0
+      right: 0
+      background: rgba(0, 0, 0, 0.3)
+    > video, img 
+      object-fit: cover
+    &.backdrop-container
+      grid-area: 1/2/-1/3
+  
+  &__content
+    grid-area: 1/2/1/3
+    padding: var(--container-top-spacing, 0rem) var(--grid-gap) var(--container-bottom-spacing, 0rem)
+    
+
+
+
+    

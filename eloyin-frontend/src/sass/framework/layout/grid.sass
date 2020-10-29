@@ -1,0 +1,49 @@
+@use "./../variables"
+@use "./../mixins"
+
+.container
+  --container: calc(100vw - var(--scrollbar-width, 4rem))
+  +mixins.breakpoint(md)
+    --container: calc(1024px - var(--scrollbar-width, 4rem))
+  +mixins.breakpoint(lg)
+    --container: calc(1280px - var(--scrollbar-width, 4rem))
+  +mixins.breakpoint(xl)
+    --container: calc(1440px - var(--scrollbar-width, 4rem))
+  +mixins.breakpoint(xxl)
+    --container: calc(1920px - var(--scrollbar-width, 4rem))    
+  &--narrow
+    --container: calc(100vw - var(--scrollbar-width, 4rem))
+    +mixins.breakpoint(md)
+      --container: calc(1024px - var(--scrollbar-width, 4rem))
+    +mixins.breakpoint(lg)
+      --container: calc(1280px - var(--scrollbar-width, 4rem))
+    +mixins.breakpoint(xl)
+      --container: calc(1300px - var(--scrollbar-width, 4rem))
+    +mixins.breakpoint(xxl)
+      --container: calc(1300px - var(--scrollbar-width, 4rem))
+  &--wide
+    --container: calc(100vw - var(--scrollbar-width, 4rem))
+    .section__content
+      padding-left: 0
+      padding-right: 0
+
+//columns        
+@for $i from 1 through variables.$grid-columns
+  .col-#{$i}
+    grid-column: span #{$i}
+//columns with breakpoints    
+@each $key, $value in variables.$breakpoints
+  @for $i from 1 through variables.$grid-columns
+    .col-#{$key}-#{$i}
+      @media(min-width: #{$value})
+        grid-column: span #{$i} 
+//grid gap
+@each $key, $value in variables.$spacings
+  .gap-#{$key}   
+      --grid-gap: calc(#{$value} * var(--spacing-unit, 0.5rem))  
+//grid gap with breakpoints      
+@each $key, $value in variables.$spacings      
+  @each $key2, $value2 in variables.$breakpoints
+    .gap-#{$key2}-#{$key}
+      @media (min-width: #{$value2})
+        --grid-gap: calc(#{$value} * var(--spacing-unit, 0.5rem))  
