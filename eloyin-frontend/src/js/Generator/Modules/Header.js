@@ -1,6 +1,7 @@
 import {html} from "lit-html"
 import Logo from "./../Elements/Logo"
 import {ButtonIcon, ButtonIconOnly} from "./../Elements/Button"
+import HomepageHero from  "./../Elements/Hero"
 import accountIcon from "./../../../images/icons/account.svg"
 import cartIcon from "./../../../images/icons/cart.svg"
 import searchIcon from "./../../../images/icons/search.svg"

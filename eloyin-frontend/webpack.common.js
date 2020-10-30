@@ -1,7 +1,7 @@
 const path = require('path');
 // const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-module.exports = {  
+module.exports = {   
   entry: {    
     app: './src/index.js'
   },   
@@ -15,8 +15,36 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.s[ac]ss$/i,
+        use: [           
+           'style-loader',
+           'css-loader',                    
+          {
+            loader: 'sass-loader',
+            options: {
+              // Prefer `dart-sass`
+              implementation: require('sass'),
+              // sourceMap: true,
+            },
+          },
+        ],
+      },
+      {
+        test: /\.svg$/,
+        loader: 'svg-inline-loader'
+      }
     ],
+    
   }, 
+  devServer: {
+    contentBase: path.join(__dirname, 'dist'),
+    compress: true,
+    hot: true,
+    //contentBase: './dist',
+    // port: 9000
+  },
+  target: "web",
   plugins: [
     // new CleanWebpackPlugin()  
   ],
